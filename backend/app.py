@@ -11,11 +11,15 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000","http://localhost:3001"],
+    allow_origins=["http://localhost:3000","http://localhost:3001","https://my-react-frontend.onrender.com"]
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 
 # Load product data from JSON file
 with open("data.json") as f:
