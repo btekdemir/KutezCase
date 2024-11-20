@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import json
 from gold_price import get_gold_price
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.staticfiles import StaticFiles
 
 
 
@@ -14,9 +14,12 @@ app.add_middleware(
     allow_origins=["http://localhost:3000","http://localhost:3001","https://my-react-frontend.onrender.com"]
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
-)
-from fastapi.middleware.cors import CORSMiddleware
+    allow_headers=["*"],)
+
+
+
+app.mount("/", StaticFiles(directory="frontend/build", html=True), name="static")
+
 
 
 
