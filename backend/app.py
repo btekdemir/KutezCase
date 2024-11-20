@@ -38,7 +38,7 @@ def get_products():
     for product in products:
         try:
             # Calculate the price
-            price = (product["popularityScore"] + 1) * product["weight"] * gold_price
+            price = (product["popularityScore"]/100 + 1) * product["weight"] * gold_price
 
             # Retain image URLs directly
             updated_product = {

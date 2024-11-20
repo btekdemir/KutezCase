@@ -5,9 +5,11 @@ import { Carousel } from "react-responsive-carousel";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0); // Track the current carousel position
+  const [currentGroup, setCurrentGroup] = useState(0); // Group index
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const visibleCount = 4; // Number of items visible at a time
 
   useEffect(() => {
     // Fetch products from the backend
@@ -29,22 +31,28 @@ function ProductList() {
   }, []);
 
   const handleSlideChange = (index) => {
-    setCurrentIndex(index); // Update the current index when the slider moves
+    setCurrentGroup(index); // Update the current group index when the carousel changes
+  };
+
+  const handleSliderChange = (value) => {
+    setCurrentGroup(value); // Update group index when the slider changes
   };
 
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  // Total groups for the slider
+  const totalGroups = Math.ceil(products.length / visibleCount);
+
   return (
     <div style={{ width: "100%", margin: "auto", textAlign: "center" }}>
-      {/* Header */}
       <h1
         style={{
           fontFamily: "Avenir Book, sans-serif",
           fontSize: "36px",
-          fontWeight: "normal", // No bold
+          fontWeight: "normal",
           marginTop: "100px",
-          marginBottom: "50px", // Space between header and carousel
+          marginBottom: "50px",
         }}
       >
         Product List
@@ -54,17 +62,15 @@ function ProductList() {
       <div style={{ position: "relative", width: "100%" }}>
         <Carousel
           showThumbs={false}
-          infiniteLoop={false} // Ensure we stop at the last slide
+          infiniteLoop={false}
           swipeable
           showStatus={false}
           useKeyboardArrows
           emulateTouch
-          centerMode
-          centerSlidePercentage={25} // Each slide takes 25% of the width (4 products visible)
-          dynamicHeight={false}
-          selectedItem={currentIndex} // Sync with slider position
-          onChange={handleSlideChange} // Update the currentIndex when the carousel changes
-          renderArrowPrev={(onClickHandler, hasPrev, label) =>
+          centerMode={false} // Disable centering to prevent partial items
+          selectedItem={currentGroup} // Sync carousel with slider
+          onChange={handleSlideChange}
+          renderArrowPrev={(onClickHandler, hasPrev) =>
             hasPrev && (
               <button
                 onClick={onClickHandler}
@@ -84,7 +90,7 @@ function ProductList() {
               </button>
             )
           }
-          renderArrowNext={(onClickHandler, hasNext, label) =>
+          renderArrowNext={(onClickHandler, hasNext) =>
             hasNext && (
               <button
                 onClick={onClickHandler}
@@ -104,77 +110,82 @@ function ProductList() {
               </button>
             )
           }
-          showIndicators={false} // Disable default indicators
+          showIndicators={false}
         >
-          {products.map((product, index) => (
+          {Array.from({ length: totalGroups }, (_, groupIndex) => (
             <div
-              key={index}
+              key={groupIndex}
               style={{
-                padding: "0 10px", // Margin between images
                 display: "flex",
                 justifyContent: "center",
+                gap: "10px",
               }}
             >
-              <ProductCard product={product} />
+              {products
+                .slice(
+                  groupIndex * visibleCount,
+                  groupIndex * visibleCount + visibleCount
+                )
+                .map((product, index) => (
+                  <ProductCard key={index} product={product} />
+                ))}
             </div>
           ))}
         </Carousel>
 
-        {/* Custom Slider */}
+        {/* Custom Sliding Bar */}
         <div
-  style={{
-    position: "relative",
-    marginTop: "20px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }}
->
-  {/* Inline <style> for Thumb */}
-  <style>
-    {`
-      input[type="range"]::-webkit-slider-thumb {
-        appearance: none;
-        width: 200px; /* Increased width (4 times larger) */
-        height: 10px; /* Reduced height to fit the slider */
-        background: #888; /* Thumb color */
-        border-radius: 5px; /* Slightly rounded corners */
-        cursor: pointer;
-      }
-      input[type="range"]::-moz-range-thumb {
-        width: 200px; /* Increased width (4 times larger) */
-        height: 10px; /* Reduced height to fit the slider */
-        background: #888; /* Thumb color */
-        border-radius: 5px; /* Slightly rounded corners */
-        cursor: pointer;
-      }
-      input[type="range"]::-ms-thumb {
-        width: 200px; /* Increased width (4 times larger) */
-        height: 10px; /* Reduced height to fit the slider */
-        background: #888; /* Thumb color */
-        border-radius: 5px; /* Slightly rounded corners */
-        cursor: pointer;
-      }
-    `}
-  </style>
-  <input
-    type="range"
-    min="0"
-    max={products.length - 4}
-    value={currentIndex}
-    onChange={(e) => handleSlideChange(Number(e.target.value))}
-    style={{
-      width: "80%",
-      appearance: "none",
-      height: "10px",
-      borderRadius: "5px",
-      background: "linear-gradient(to right, #d3d3d3, #999)", // Slider track
-      outline: "none",
-      cursor: "pointer",
-    }}
-  />
-</div>
-
+          style={{
+            position: "relative",
+            marginTop: "20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <style>
+            {`
+              input[type="range"]::-webkit-slider-thumb {
+                appearance: none;
+                width: 200px; /* Increase width 2x */
+                height: 10px; /* Match height to the sliding frame */
+                background: #888; /* Thumb color */
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer;
+              }
+              input[type="range"]::-moz-range-thumb {
+                width: 200px; /* Increase width 2x */
+                height: 10px; /* Match height to the sliding frame */
+                background: #888; /* Thumb color */
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer;
+              }
+              input[type="range"]::-ms-thumb {
+                width: 200px; /* Increase width 2x */
+                height: 10px; /* Match height to the sliding frame */
+                background: #888; /* Thumb color */
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer;
+              }
+            `}
+          </style>
+          <input
+            type="range"
+            min="0"
+            max={totalGroups - 1} // Number of groups
+            value={currentGroup}
+            onChange={(e) => handleSliderChange(Number(e.target.value))}
+            style={{
+              width: "80%",
+              appearance: "none",
+              height: "10px",
+              borderRadius: "5px",
+              background: "linear-gradient(to right, #d3d3d3, #999)",
+              outline: "none",
+              cursor: "pointer",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ def get_gold_price():
     """
     Fetch the real-time gold price in USD per ounce from GoldAPI.
     """
-    api_key = "goldapi-4v43y3sm3q2ky02-io"
+    api_key = "goldapi-5k0oa19m3qf297w-io"
     symbol = "XAU"
     curr = "USD"
     url = f"https://www.goldapi.io/api/{symbol}/{curr}"
