@@ -70,8 +70,26 @@ function ProductCard({ product }) {
       />
 
       {/* Product Details */}
-      <h3 style={{ fontSize: "16px", marginBottom: "5px" }}>{name}</h3>
-      <p style={{ fontSize: "14px", margin: "5px 0" }}>${price} USD</p>
+      <h3
+        style={{
+          fontFamily: "Montserrat, sans-serif",
+          fontWeight: "500", // Medium font
+          fontSize: "15px",
+          marginBottom: "5px",
+        }}
+      >
+        {name}
+      </h3>
+      <p
+        style={{
+          fontFamily: "Montserrat, sans-serif",
+          fontWeight: "400", // Regular font
+          fontSize: "15px",
+          margin: "5px 0",
+        }}
+      >
+        ${price} USD
+      </p>
 
       {/* Color Picker */}
       <div style={{ margin: "10px 0", display: "flex", gap: "8px" }}>
@@ -106,7 +124,14 @@ function ProductCard({ product }) {
           }}
         ></button>
       </div>
-      <p style={{ fontSize: "12px", color: "#888", marginBottom: "10px" }}>
+      <p
+        style={{
+          fontFamily: "Avenir Book, sans-serif",
+          fontSize: "12px",
+          color: "black", // Changed color to black
+          marginBottom: "10px",
+        }}
+      >
         {selectedColor === "yellow"
           ? "Yellow Gold"
           : selectedColor === "white"
@@ -124,7 +149,13 @@ function ProductCard({ product }) {
         }}
       >
         <div style={{ display: "flex" }}>{renderStars(popularityScore)}</div>
-        <span style={{ fontSize: "14px", color: "#333" }}>
+        <span
+          style={{
+            fontFamily: "Avenir Book, sans-serif",
+            fontSize: "14px",
+            color: "#333",
+          }}
+        >
           {popularityScore}/5
         </span>
       </div>
