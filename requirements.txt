@@ -49,7 +49,7 @@ ipykernel==6.25.2
 ipython==8.16.1
 jcloud==0.3
 jedi==0.19.1
-jina==3.27.16
+jina
 jina-hubble-sdk==0.39.0
 Jinja2==3.1.4
 joblib==1.4.2
@@ -141,7 +141,7 @@ types-urllib3==1.26.25.14
 typing-inspect==0.9.0
 typing_extensions==4.8.0
 urllib3==1.26.20
-uvicorn==0.24.0
+uvicorn
 uvloop==0.20.0
 watchfiles==0.24.0
 wcwidth==0.2.8
