@@ -4,6 +4,7 @@ import json
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import requests
+import os
 
 
 def get_gold_price():
@@ -61,7 +62,7 @@ app.add_middleware(
     allow_headers=["*"],)
 
 
-#app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="static")
+app.mount("/", StaticFiles(directory="build", html=True), name="static")
 
 
 

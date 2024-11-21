@@ -9,8 +9,8 @@ asgiref==3.8.1
 asttokens==2.4.0
 async-timeout==4.0.3
 attrs==24.2.0
-aubio==0.4.9
-audioread==3.0.1
+#aubio==0.4.9
+#audioread==3.0.1
 backcall==0.2.0
 backoff==2.2.1
 bcrypt==3.2.0
@@ -36,9 +36,6 @@ frozenlist==1.4.1
 fsspec==2024.9.0
 googleapis-common-protos==1.65.0
 greenlet==3.1.1
-grpcio==1.57.0
-grpcio-health-checking==1.57.0
-grpcio-reflection==1.57.0
 gunicorn==23.0.0
 h11==0.14.0
 httptools==0.6.1
@@ -133,7 +130,7 @@ threadpoolctl==3.5.0
 #tokenizers==0.20.0
 #torch==2.2.2
 tornado==6.3.3
-tqdm==4.66.5
+#tqdm==4.66.5
 traitlets==5.11.2
 transformers==4.45.1
 types-requests==2.31.0.6
