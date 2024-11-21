@@ -61,8 +61,8 @@ app.add_middleware(
     allow_headers=["*"],)
 
 
+#app.mount("/", StaticFiles(directory="../frontend/build", html=True), name="static")
 
-app.mount("/", StaticFiles(directory="/Users/baristekdemir/productPageKutaz/frontend/build", html=True), name="static")
 
 
 
