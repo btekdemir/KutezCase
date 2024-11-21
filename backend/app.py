@@ -8,6 +8,14 @@ from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello from FastAPI"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -18,7 +26,7 @@ app.add_middleware(
 
 
 
-#app.mount("/", StaticFiles(directory="frontend/build", html=True), name="static")
+app.mount("/", StaticFiles(directory="frontend/build", html=True), name="static")
 
 
 
