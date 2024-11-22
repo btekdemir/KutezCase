@@ -63,7 +63,7 @@ app.add_middleware(
 )
 
 
-app.mount("/", StaticFiles(directory="build", html=True), name="static")
+app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
 
 
 
