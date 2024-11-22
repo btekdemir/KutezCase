@@ -49,17 +49,18 @@ app = FastAPI()
 def read_root():
     return {"message": "Hello from FastAPI"}
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+#if __name__ == "__main__":
+    #import uvicorn
+    #uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000","http://localhost:3001","https://my-react-frontend.onrender.com"],
+    allow_origins=["*"],  # Adjust to your frontend's URL in production
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],)
+    allow_headers=["*"],
+)
 
 
 app.mount("/", StaticFiles(directory="build", html=True), name="static")
