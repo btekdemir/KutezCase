@@ -108,3 +108,10 @@ def get_products():
 
 # Serve static files under /static
 app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
+
+# Serve React app for unknown routes
+@app.get("/{full_path:path}")
+def serve_react_app(full_path: str):
+    if not os.path.exists(f"backend/build/{full_path}"):
+        return FileResponse("backend/build/index.html")
+    return FileResponse(f"backend/build/{full_path}")
