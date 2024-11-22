@@ -107,7 +107,7 @@ def get_products():
     return {"products": updated_products}
 
 # Serve static files under /static
-app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
+#app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
 
 # Serve React app for unknown routes
 @app.get("/{full_path:path}")
