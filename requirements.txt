@@ -9,7 +9,7 @@ asgiref==3.8.1
 asttokens==2.4.0
 async-timeout==4.0.3
 attrs==24.2.0
-aubio==0.4.9
+#aubio==0.4.9
 audioread==3.0.1
 backcall==0.2.0
 backoff==2.2.1
