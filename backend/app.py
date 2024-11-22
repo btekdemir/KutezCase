@@ -45,9 +45,9 @@ def get_gold_price():
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello from FastAPI"}
+#@app.get("/")
+#def read_root():
+    #return {"message": "Hello from FastAPI"}
 
 if __name__ == "__main__":
     import uvicorn
@@ -64,7 +64,7 @@ app.add_middleware(
 
 
 # Serve static files under /static
-app.mount("/static", StaticFiles(directory="backend/build", html=True), name="static")
+app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
 
 
 
