@@ -78,7 +78,7 @@ with open("backend/data.json") as f:
 
 
 
-@app.get("/products")
+@app.get("/api/products")
 def get_products():
     """
     API endpoint to fetch products with dynamically calculated prices and image URLs.
