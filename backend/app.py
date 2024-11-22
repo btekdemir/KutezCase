@@ -63,8 +63,6 @@ app.add_middleware(
 )
 
 
-# Serve static files under /static
-app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
 
 
 
@@ -107,3 +105,6 @@ def get_products():
             print(f"Error processing product {product['name']}: {e}")
 
     return {"products": updated_products}
+
+# Serve static files under /static
+app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
