@@ -13,7 +13,7 @@ function ProductList() {
 
   useEffect(() => {
     // Fetch products from the backend
-    fetch("https://kutez-6f23a344b049.herokuapp.com/products")
+    fetch("https://kutez-6f23a344b049.herokuapp.com/api/products")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch products");
