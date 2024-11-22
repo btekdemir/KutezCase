@@ -71,7 +71,7 @@ app.mount("/", StaticFiles(directory="backend/build", html=True), name="static")
 
 
 # Load product data from JSON file
-with open("data.json") as f:
+with open("backend/data.json") as f:
     products = json.load(f)
 
 
